@@ -30,6 +30,14 @@ const create = async (req, res) => {
     if (!titulo) {
         return res.status(400).json({ error: 'titulo es obligatorio' });
     }
+
+    if (duracion_horas != null) {
+        const duracion = Number(duracion_horas);
+        if (!Number.isInteger(duracion) || duracion < 1 || duracion > 500) {
+            return res.status(400).json({ error: 'duracion_horas debe ser un entero entre 1 y 500' });
+        }
+    }
+
     try {
         const query = 'INSERT INTO cursos_online (titulo, resumen, duracion_horas, nivel, fecha_publicacion, publicado) VALUES (?, ?, ?, ?, ?, ?)';
         const [result] = await db.query(query, [titulo, resumen || null, duracion_horas || null, nivel || null, fecha_publicacion || null, publicado ?? false]);
@@ -49,6 +57,14 @@ const update = async (req, res) => {
     if (!titulo) {
         return res.status(400).json({ error: 'titulo es obligatorio' });
     }
+
+    if (duracion_horas != null) {
+        const duracion = Number(duracion_horas);
+        if (!Number.isInteger(duracion) || duracion < 1 || duracion > 500) {
+            return res.status(400).json({ error: 'duracion_horas debe ser un entero entre 1 y 500' });
+        }
+    }
+
     try {
         const query = 'UPDATE cursos_online SET titulo=?, resumen=?, duracion_horas=?, nivel=?, fecha_publicacion=?, publicado=? WHERE id = ?';
         const [result] = await db.query(query, [titulo, resumen || null, duracion_horas || null, nivel || null, fecha_publicacion || null, publicado ?? false, id]);
