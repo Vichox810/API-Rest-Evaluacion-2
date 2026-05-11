@@ -33,7 +33,7 @@ CREATE TABLE reservas_hotel (
     habitacion_numero VARCHAR(10) NOT NULL,
     fecha_entrada DATE NOT NULL,
     fecha_salida DATE NOT NULL,
-    total_pago DECIMAL(16,2),  -- Hasta 14 dígitos enteros + 2 decimales
+    total_pago DECIMAL(14,2),  
     estado VARCHAR(30)
 );
 ```
