@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Cursos Online API",
+    "description": "Colección Postman para la API de cursos_online",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Listar cursos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/cursos_online",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["cursos_online"]
+        }
+      }
+    },
+    {
+      "name": "Obtener curso por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/cursos_online/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["cursos_online", "1"]
+        }
+      }
+    },
+    {
+      "name": "Crear curso",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Curso de Node.js\",\n  \"resumen\": \"Aprende a crear APIs con Express y MySQL.\",\n  \"duracion_horas\": 20,\n  \"nivel\": \"Intermedio\",\n  \"fecha_publicacion\": \"2026-05-09\",\n  \"publicado\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/cursos_online",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["cursos_online"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar curso",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Curso de Node.js actualizado\",\n  \"resumen\": \"Texto actualizado del curso.\",\n  \"duracion_horas\": 25,\n  \"nivel\": \"Avanzado\",\n  \"fecha_publicacion\": \"2026-06-01\",\n  \"publicado\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/cursos_online/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["cursos_online", "1"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar curso",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/cursos_online/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["cursos_online", "1"]
+        }
+      }
+    }
+  ]
+}

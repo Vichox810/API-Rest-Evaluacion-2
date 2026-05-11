@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Reservas Hotel API",
+    "description": "Colección Postman para la API de reservas_hotel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Listar reservas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/reservas_hotel",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["reservas_hotel"]
+        }
+      }
+    },
+    {
+      "name": "Obtener reserva por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/reservas_hotel/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["reservas_hotel", "1"]
+        }
+      }
+    },
+    {
+      "name": "Crear reserva",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez\",\n  \"habitacion_numero\": \"101\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-20\",\n  \"total_pago\": 500.00,\n  \"estado\": \"Confirmada\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/reservas_hotel",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["reservas_hotel"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar reserva",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez García\",\n  \"habitacion_numero\": \"102\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-22\",\n  \"total_pago\": 750.00,\n  \"estado\": \"Confirmada\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3001/reservas_hotel/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["reservas_hotel", "1"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar reserva",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3001/reservas_hotel/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3001",
+          "path": ["reservas_hotel", "1"]
+        }
+      }
+    }
+  ]
+}
