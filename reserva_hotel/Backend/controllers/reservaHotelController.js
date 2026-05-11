@@ -5,7 +5,6 @@ const getAll = async (req, res) => {
         const [rows] = await db.query('SELECT * FROM reservas_hotel');
         res.json(rows);
     } catch (error) {
-        // Error al obtener todas las reservas
         res.status(500).json({ error: 'Error al obtener las reservas', details: error.message });
     }
 }
@@ -20,7 +19,6 @@ const getById = async (req, res) => {
         }
         res.json(rows[0]);
     } catch (error) {
-        // Error al obtener una reserva por ID
         res.status(500).json({ error: 'Error al obtener la reserva', details: error.message });
     }
 }
@@ -38,7 +36,6 @@ const create = async (req, res) => {
             id: result.insertId
         });
     } catch (error) {
-        // Error al crear una nueva reserva
         res.status(500).json({ error: 'Error al guardar en la base de datos', details: error.message });
     }
 }
@@ -57,7 +54,6 @@ const update = async (req, res) => {
             affectedRows: result.affectedRows
         });
     } catch (error) {
-        // Error al actualizar una reserva existente
         res.status(500).json({ error: 'Error al actualizar en la base de datos', details: error.message });
     }
 }
@@ -71,7 +67,6 @@ const remove = async (req, res) => {
             mensaje: 'Reserva eliminada con éxito'
         });
     } catch (error) {
-        // Error al eliminar una reserva
         res.status(500).json({ error: 'Error al eliminar en la base de datos', details: error.message });
     }
 }
