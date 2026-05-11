@@ -1,9 +1,28 @@
 const db = require('../db');
 
+const formatDateValue = (value) => {
+    if (value == null) return null;
+    const d = new Date(value);
+    const pad = (n) => String(n).padStart(2, '0');
+    const date = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const hours = d.getHours();
+    const minutes = d.getMinutes();
+    const seconds = d.getSeconds();
+    if (hours || minutes || seconds) {
+        return `${date} ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+    return date;
+};
+
 const getAll = async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM reservas_hotel');
-        res.json(rows);
+        const formattedRows = rows.map((row) => ({
+            ...row,
+            fecha_entrada: formatDateValue(row.fecha_entrada),
+            fecha_salida: formatDateValue(row.fecha_salida)
+        }));
+        res.json(formattedRows);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener las reservas', details: error.message });
     }
@@ -17,7 +36,12 @@ const getById = async (req, res) => {
         if (!rows[0]) {
             return res.status(404).json({ error: 'Reserva no encontrada' });
         }
-        res.json(rows[0]);
+        const reserva = {
+            ...rows[0],
+            fecha_entrada: formatDateValue(rows[0].fecha_entrada),
+            fecha_salida: formatDateValue(rows[0].fecha_salida)
+        };
+        res.json(reserva);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener la reserva', details: error.message });
     }

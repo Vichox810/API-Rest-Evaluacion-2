@@ -1,9 +1,27 @@
 const db = require('../db');
 
+const formatDateValue = (value) => {
+    if (value == null) return null;
+    const d = new Date(value);
+    const pad = (n) => String(n).padStart(2, '0');
+    const date = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const hours = d.getHours();
+    const minutes = d.getMinutes();
+    const seconds = d.getSeconds();
+    if (hours || minutes || seconds) {
+        return `${date} ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+    return date;
+};
+
 const getAll = async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM cursos_online');
-        res.json(rows);
+        const formattedRows = rows.map((row) => ({
+            ...row,
+            fecha_publicacion: formatDateValue(row.fecha_publicacion)
+        }));
+        res.json(formattedRows);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los cursos', details: error.message });
     }
@@ -17,7 +35,11 @@ const getById = async (req, res) => {
         if (!rows[0]) {
             return res.status(404).json({ error: 'Curso no encontrado' });
         }
-        res.json(rows[0]);
+        const curso = {
+            ...rows[0],
+            fecha_publicacion: formatDateValue(rows[0].fecha_publicacion)
+        };
+        res.json(curso);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener el curso', details: error.message });
     }
