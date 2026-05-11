@@ -17,7 +17,6 @@ CREATE TABLE reservas_hotel (
     habitacion_numero VARCHAR(10) NOT NULL,
     fecha_entrada DATE NOT NULL,
     fecha_salida DATE NOT NULL,
-    -- Cambiado a DECIMAL(14,2) para soportar montos mayores según la especificación
     total_pago DECIMAL(14,2),
     estado VARCHAR(30)
 );
