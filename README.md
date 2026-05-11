@@ -56,7 +56,7 @@ CREATE TABLE reservas_hotel (
 - `PUT /reservas_hotel/:id` - Actualizar reserva
 - `DELETE /reservas_hotel/:id` - Eliminar reserva
 
-**Validaciones:** `huesped_nombre`, `habitacion_numero`, `fecha_entrada`, `fecha_salida` obligatorios. `total_pago` hasta 14 dígitos enteros (envíalo como string en Postman).
+**Validaciones:** `huesped_nombre`, `habitacion_numero`, `fecha_entrada`, `fecha_salida` obligatorios. `total_pago` hasta 12 dígitos enteros + 2 decimales.
 
 ## Pruebas
 Importa las colecciones Postman desde `postman/` y ejecuta los endpoints.
