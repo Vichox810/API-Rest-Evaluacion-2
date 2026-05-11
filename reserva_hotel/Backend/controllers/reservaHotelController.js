@@ -28,9 +28,19 @@ const create = async (req, res) => {
     if (!huesped_nombre || !habitacion_numero || !fecha_entrada || !fecha_salida) {
         return res.status(400).json({ error: 'huesped_nombre, habitacion_numero, fecha_entrada y fecha_salida son obligatorios' });
     }
+
+    // Convertir total_pago a número si viene como string (para manejar valores grandes)
+    let totalPagoParsed = null;
+    if (total_pago != null) {
+        totalPagoParsed = parseFloat(total_pago);
+        if (isNaN(totalPagoParsed)) {
+            return res.status(400).json({ error: 'total_pago debe ser un número válido' });
+        }
+    }
+
     try {
         const query = 'INSERT INTO reservas_hotel (huesped_nombre, habitacion_numero, fecha_entrada, fecha_salida, total_pago, estado) VALUES (?, ?, ?, ?, ?, ?)';
-        const [result] = await db.query(query, [huesped_nombre, habitacion_numero, fecha_entrada, fecha_salida, total_pago || null, estado || 'Pendiente']);
+        const [result] = await db.query(query, [huesped_nombre, habitacion_numero, fecha_entrada, fecha_salida, totalPagoParsed, estado || 'Pendiente']);
         res.status(201).json({
             mensaje: 'Reserva guardada con éxito',
             id: result.insertId
@@ -46,9 +56,19 @@ const update = async (req, res) => {
     if (!huesped_nombre || !habitacion_numero || !fecha_entrada || !fecha_salida) {
         return res.status(400).json({ error: 'huesped_nombre, habitacion_numero, fecha_entrada y fecha_salida son obligatorios' });
     }
+
+    // Convertir total_pago a número si viene como string (para manejar valores grandes)
+    let totalPagoParsed = null;
+    if (total_pago != null) {
+        totalPagoParsed = parseFloat(total_pago);
+        if (isNaN(totalPagoParsed)) {
+            return res.status(400).json({ error: 'total_pago debe ser un número válido' });
+        }
+    }
+
     try {
         const query = 'UPDATE reservas_hotel SET huesped_nombre=?, habitacion_numero=?, fecha_entrada=?, fecha_salida=?, total_pago=?, estado=? WHERE id = ?';
-        const [result] = await db.query(query, [huesped_nombre, habitacion_numero, fecha_entrada, fecha_salida, total_pago || null, estado || 'Pendiente', id]);
+        const [result] = await db.query(query, [huesped_nombre, habitacion_numero, fecha_entrada, fecha_salida, totalPagoParsed, estado || 'Pendiente', id]);
         res.status(200).json({
             mensaje: 'Reserva actualizada con éxito',
             affectedRows: result.affectedRows

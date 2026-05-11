@@ -46,7 +46,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez\",\n  \"habitacion_numero\": \"101\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-20\",\n  \"total_pago\": 500.00,\n  \"estado\": \"Confirmada\"\n}"
+          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez\",\n  \"habitacion_numero\": \"101\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-20\",\n  \"total_pago\": \"500.00\",\n  \"estado\": \"Confirmada\"\n}"
         },
         "url": {
           "raw": "http://localhost:3001/reservas_hotel",
@@ -69,7 +69,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez García\",\n  \"habitacion_numero\": \"102\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-22\",\n  \"total_pago\": 750.00,\n  \"estado\": \"Confirmada\"\n}"
+          "raw": "{\n  \"huesped_nombre\": \"Juan Pérez García\",\n  \"habitacion_numero\": \"102\",\n  \"fecha_entrada\": \"2026-05-15\",\n  \"fecha_salida\": \"2026-05-22\",\n  \"total_pago\": \"750.00\",\n  \"estado\": \"Confirmada\"\n}"
         },
         "url": {
           "raw": "http://localhost:3001/reservas_hotel/1",
